@@ -1,26 +1,215 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ===== Theme Configuration ===== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-royal-purple: #4B0082;
+  --color-royal-purple-dark: #1a0030;
+  --color-royal-purple-deep: #0d0015;
+  --color-royal-purple-mid: #2d0060;
+  --color-gold: #FFD700;
+  --color-gold-champagne: #E6C78B;
+  --color-gold-dark: #B8860B;
+  --color-ivory: #FFF8E7;
+  --color-cream: #F5F5DC;
+  --color-background: #0d0015;
+  --color-foreground: #FFF8E7;
+  --font-heading: 'Cinzel Decorative', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  --font-sans: 'Montserrat', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Root Variables ===== */
+:root {
+  --background: #0d0015;
+  --foreground: #FFF8E7;
+}
+
+/* ===== Global Styles ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #0d0015 0%, #1a0030 50%, #0d0015 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0015;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FFD700, #E6C78B);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFD700;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(255, 215, 0, 0.3);
+  color: #FFF8E7;
+}
+
+/* ===== Gold Text Glow Utility ===== */
+.gold-glow {
+  text-shadow:
+    0 0 10px rgba(255, 215, 0, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.3),
+    0 0 40px rgba(255, 215, 0, 0.15);
+}
+
+.gold-glow-strong {
+  text-shadow:
+    0 0 10px rgba(255, 215, 0, 0.7),
+    0 0 30px rgba(255, 215, 0, 0.5),
+    0 0 60px rgba(255, 215, 0, 0.3),
+    0 0 100px rgba(255, 215, 0, 0.15);
+}
+
+/* ===== Glassmorphism Utility ===== */
+.glass {
+  background: rgba(75, 0, 130, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(230, 199, 139, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.glass-dark {
+  background: rgba(13, 0, 21, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(230, 199, 139, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Gold Border Glow ===== */
+.gold-border-glow {
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.1),
+    inset 0 0 15px rgba(255, 215, 0, 0.05);
+}
+
+/* ===== Ornamental Divider ===== */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #E6C78B, transparent);
+}
+
+/* ===== Section Spacing ===== */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Shimmer Animation ===== */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    #E6C78B 0%,
+    #FFD700 25%,
+    #FFF8E7 50%,
+    #FFD700 75%,
+    #E6C78B 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ===== Mandala Rotation ===== */
+@keyframes mandala-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mandala-rotate {
+  animation: mandala-spin 20s linear infinite;
+}
+
+/* ===== Pulse Glow ===== */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 60px rgba(255, 215, 0, 0.2);
+  }
+}
+
+.pulse-gold {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ===== Float Animation ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===== Bounce Chevron ===== */
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.5; }
+}
+
+.bounce-chevron {
+  animation: bounce-down 2s ease-in-out infinite;
+}
+
+/* ===== Soundwave Bars ===== */
+@keyframes soundwave {
+  0%, 100% { height: 6px; }
+  50% { height: 20px; }
+}
+
+/* ===== Heart Pulse ===== */
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.heart-pulse {
+  animation: heart-pulse 1.5s ease-in-out infinite;
+  display: inline-block;
 }
